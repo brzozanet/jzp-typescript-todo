@@ -15,6 +15,7 @@ const tasks = [
 console.log(tasksContainerElement);
 console.log(tasks);
 const renderTasks = () => {
+    // NOTE: read about void
     tasksContainerElement.innerHTML = "";
     tasks.forEach((task) => {
         const taskElement = document.createElement("li");

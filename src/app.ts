@@ -19,7 +19,8 @@ const tasks: string[] = [
 console.log(tasksContainerElement);
 console.log(tasks);
 
-const renderTasks = () => {
+const renderTasks = (): void => {
+  // NOTE: read about void
   tasksContainerElement.innerHTML = "";
   tasks.forEach((task) => {
     const taskElement: HTMLLIElement = document.createElement("li");
@@ -28,7 +29,7 @@ const renderTasks = () => {
   });
 };
 
-const addTask = (task: string) => {
+const addTask = (task: string): void => {
   tasks.push(task);
 };
 
