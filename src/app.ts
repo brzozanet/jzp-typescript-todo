@@ -8,7 +8,7 @@ const tasksContainerElement: HTMLUListElement =
 const taskNameInputElement: HTMLInputElement = document.querySelector("#name");
 const addButtonElement: HTMLButtonElement = document.querySelector("button");
 
-let tasks: Array<string> = [
+const tasks: Array<string> = [
   "Nauczyć się Typescript",
   "Nauczyć sie Next.js",
   "Skończyć zaległy kurs React",
@@ -17,6 +17,7 @@ let tasks: Array<string> = [
 ];
 
 const renderTasks = () => {
+  tasksContainerElement.innerHTML = "";
   tasks.forEach((task) => {
     const taskElement: HTMLLIElement = document.createElement("li");
     taskElement.innerText = task;
@@ -30,7 +31,6 @@ const addTask = (task: string) => {
 
 addButtonElement.addEventListener("click", (event: Event) => {
   event.preventDefault();
-  tasks = [];
   addTask(taskNameInputElement.value);
   renderTasks();
 });

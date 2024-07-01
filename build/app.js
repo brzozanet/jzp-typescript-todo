@@ -5,7 +5,7 @@
 const tasksContainerElement = document.querySelector(".tasks");
 const taskNameInputElement = document.querySelector("#name");
 const addButtonElement = document.querySelector("button");
-let tasks = [
+const tasks = [
     "Nauczyć się Typescript",
     "Nauczyć sie Next.js",
     "Skończyć zaległy kurs React",
@@ -13,6 +13,7 @@ let tasks = [
     "Znaleźć pracę",
 ];
 const renderTasks = () => {
+    tasksContainerElement.innerHTML = "";
     tasks.forEach((task) => {
         const taskElement = document.createElement("li");
         taskElement.innerText = task;
@@ -24,7 +25,6 @@ const addTask = (task) => {
 };
 addButtonElement.addEventListener("click", (event) => {
     event.preventDefault();
-    tasks = [];
     addTask(taskNameInputElement.value);
     renderTasks();
 });
