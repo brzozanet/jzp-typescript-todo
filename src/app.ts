@@ -5,6 +5,8 @@
 
 const tasksContainerElement: HTMLUListElement =
   document.querySelector(".tasks");
+const taskInputElement: HTMLInputElement = document.querySelector("#name");
+const buttonElement: HTMLButtonElement = document.querySelector("button");
 
 let tasks: Array<string> = [
   "Nauczyć się Typescript",
@@ -14,8 +16,6 @@ let tasks: Array<string> = [
   "Znaleźć pracę",
 ];
 
-// NOTE: render tasks
-
 const renderTasks = () => {
   tasks.forEach((task) => {
     const taskElement: HTMLLIElement = document.createElement("li");
@@ -23,11 +23,6 @@ const renderTasks = () => {
     tasksContainerElement.append(taskElement);
   });
 };
-
-// NOTE: add task
-
-const taskInputElement: HTMLInputElement = document.querySelector("#name");
-const buttonElement: HTMLButtonElement = document.querySelector("button");
 
 const addTask = (task: string) => {
   tasks.push(task);
