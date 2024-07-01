@@ -5,8 +5,8 @@
 
 const tasksContainerElement: HTMLUListElement =
   document.querySelector(".tasks");
-const taskInputElement: HTMLInputElement = document.querySelector("#name");
-const buttonElement: HTMLButtonElement = document.querySelector("button");
+const taskNameInputElement: HTMLInputElement = document.querySelector("#name");
+const addButtonElement: HTMLButtonElement = document.querySelector("button");
 
 let tasks: Array<string> = [
   "Nauczyć się Typescript",
@@ -28,10 +28,10 @@ const addTask = (task: string) => {
   tasks.push(task);
 };
 
-buttonElement.addEventListener("click", (event) => {
+addButtonElement.addEventListener("click", (event: Event) => {
   event.preventDefault();
   tasks = [];
-  addTask(taskInputElement.value);
+  addTask(taskNameInputElement.value);
   renderTasks();
 });
 

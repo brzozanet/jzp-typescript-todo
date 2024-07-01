@@ -3,8 +3,8 @@
 //   <input type="checkbox" id="task-1" name="Nauczyć się Typescript" />
 // </li>
 const tasksContainerElement = document.querySelector(".tasks");
-const taskInputElement = document.querySelector("#name");
-const buttonElement = document.querySelector("button");
+const taskNameInputElement = document.querySelector("#name");
+const addButtonElement = document.querySelector("button");
 let tasks = [
     "Nauczyć się Typescript",
     "Nauczyć sie Next.js",
@@ -22,10 +22,10 @@ const renderTasks = () => {
 const addTask = (task) => {
     tasks.push(task);
 };
-buttonElement.addEventListener("click", (event) => {
+addButtonElement.addEventListener("click", (event) => {
     event.preventDefault();
     tasks = [];
-    addTask(taskInputElement.value);
+    addTask(taskNameInputElement.value);
     renderTasks();
 });
 renderTasks();
