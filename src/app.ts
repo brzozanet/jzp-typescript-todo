@@ -6,13 +6,15 @@
 const tasksContainerElement: HTMLUListElement =
   document.querySelector(".tasks");
 
-const tasks: Array<string> = [
+let tasks: Array<string> = [
   "Nauczyć się Typescript",
   "Nauczyć sie Next.js",
   "Skończyć zaległy kurs React",
   "Zrobić portfolio",
   "Znaleźć pracę",
 ];
+
+// NOTE: render tasks
 
 const renderTasks = () => {
   tasks.forEach((task) => {
@@ -21,5 +23,21 @@ const renderTasks = () => {
     tasksContainerElement.append(taskElement);
   });
 };
+
+// NOTE: add task
+
+const taskInputElement: HTMLInputElement = document.querySelector("#name");
+const buttonElement: HTMLButtonElement = document.querySelector("button");
+
+const addTask = (task: string) => {
+  tasks.push(task);
+};
+
+buttonElement.addEventListener("click", (event) => {
+  event.preventDefault();
+  tasks = [];
+  addTask(taskInputElement.value);
+  renderTasks();
+});
 
 renderTasks();
