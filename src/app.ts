@@ -8,25 +8,55 @@ const tasksContainerElement: HTMLUListElement =
 const taskNameInputElement: HTMLInputElement = document.querySelector("#name");
 const addButtonElement: HTMLButtonElement = document.querySelector("button");
 
-const tasks: Array<string> = [
-  "Nauczyć się Typescript",
-  "Nauczyć sie Next.js",
-  "Skończyć zaległy kurs React",
-  "Zrobić portfolio",
-  "Znaleźć pracę",
+// const tasks: string[] = [
+//   "Nauczyć się Typescript",
+//   "Nauczyć sie Next.js",
+//   "Skończyć zaległy kurs React",
+//   "Zrobić portfolio",
+//   "Znaleźć pracę",
+// ];
+
+const tasks: {
+  name: string;
+  done: boolean;
+}[] = [
+  {
+    name: "Skończyć kurs GO IT",
+    done: true,
+  },
+  {
+    name: "Nauczyć się Typescript",
+    done: false,
+  },
+  {
+    name: "Nauczyć sie Next.js",
+    done: false,
+  },
+  {
+    name: "Skończyć zaległy kurs React",
+    done: false,
+  },
+  {
+    name: "Zrobić portfolio",
+    done: false,
+  },
+  {
+    name: "Znaleźć pracę",
+    done: false,
+  },
 ];
 
 const renderTasks = () => {
   tasksContainerElement.innerHTML = "";
   tasks.forEach((task) => {
     const taskElement: HTMLLIElement = document.createElement("li");
-    taskElement.innerText = task;
+    taskElement.innerText = task.name;
     tasksContainerElement.append(taskElement);
   });
 };
 
-const addTask = (task: string) => {
-  tasks.push(task);
+const addTask = (taskName: string) => {
+  tasks.push({ name: taskName, done: false });
 };
 
 addButtonElement.addEventListener("click", (event: Event) => {
