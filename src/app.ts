@@ -41,11 +41,6 @@ const tasks: {
   },
 ];
 
-// <li>
-//   <label for="task-1">Nauczyć się Typescript</label>
-//   <input type="checkbox" id="task-1" name="Nauczyć się Typescript" />
-// </li>
-
 // NOTE: Opcja 1 jest bardziej tradycyjna i może być preferowana ze względów bezpieczeństwa,
 // ponieważ tworzy elementy DOM programowo, co minimalizuje ryzyko ataków typu Cross-Site Scripting (XSS),
 // gdy dane pochodzą z niezaufanych źródeł. Pozwala na bardziej kontrolowane tworzenie elementów i atrybutów,
@@ -59,9 +54,8 @@ const renderTasks = () => {
     const taskId: string = `task-${index}`;
     const checkboxElement: HTMLInputElement = document.createElement("input");
 
-    taskElement.innerText = task.name;
     labelElement.setAttribute("for", taskId);
-    labelElement.setAttribute("name", task.name);
+    labelElement.innerText = task.name;
 
     checkboxElement.type = "checkbox";
     checkboxElement.name = task.name;
