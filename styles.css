@@ -30,6 +30,7 @@ body {
   border-radius: 4px;
   display: inline-block;
   padding: 16px;
+  min-width: 300px;
 }
 
 input[type="text"] {
