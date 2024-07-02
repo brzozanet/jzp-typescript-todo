@@ -3,6 +3,11 @@ const tasksContainerElement: HTMLUListElement =
 const taskNameInputElement: HTMLInputElement = document.querySelector("#name");
 const addButtonElement: HTMLButtonElement = document.querySelector("button");
 
+interface Task {
+  title: string;
+  done: boolean;
+}
+
 // const tasks: string[] = [
 //   "Nauczyć się Typescript",
 //   "Nauczyć sie Next.js",
@@ -11,10 +16,12 @@ const addButtonElement: HTMLButtonElement = document.querySelector("button");
 //   "Znaleźć pracę",
 // ];
 
-const tasks: {
-  title: string;
-  done: boolean;
-}[] = [
+// const tasks: {
+//   title: string;
+//   done: boolean;
+// }[] = [
+
+const tasks: Task[] = [
   {
     title: "Skończyć kurs GO IT",
     done: true,
@@ -100,7 +107,11 @@ const renderTasks = () => {
   });
 };
 
-const addTask = (task: { title: string; done: boolean }) => {
+// const addTask = (task: { title: string; done: boolean }) => {
+//   tasks.push(task);
+// };
+
+const addTask = (task: Task) => {
   tasks.push(task);
 };
 

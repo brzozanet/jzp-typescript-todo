@@ -8,6 +8,10 @@ const addButtonElement = document.querySelector("button");
 //   "Zrobić portfolio",
 //   "Znaleźć pracę",
 // ];
+// const tasks: {
+//   title: string;
+//   done: boolean;
+// }[] = [
 const tasks = [
     {
         title: "Skończyć kurs GO IT",
@@ -78,6 +82,9 @@ const renderTasks = () => {
         });
     });
 };
+// const addTask = (task: { title: string; done: boolean }) => {
+//   tasks.push(task);
+// };
 const addTask = (task) => {
     tasks.push(task);
 };
