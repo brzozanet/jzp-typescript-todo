@@ -46,45 +46,59 @@ const tasks: {
 // gdy dane pochodzą z niezaufanych źródeł. Pozwala na bardziej kontrolowane tworzenie elementów i atrybutów,
 // ale jest bardziej rozwlekła i wymaga więcej kodu do osiągnięcia tego samego efektu.
 
-const renderTasks = () => {
-  tasksContainerElement.innerHTML = "";
-  tasks.forEach((task, index) => {
-    const taskElement: HTMLLIElement = document.createElement("li");
-    const labelElement: HTMLLabelElement = document.createElement("label");
-    const taskId: string = `task-${index}`;
-    const checkboxElement: HTMLInputElement = document.createElement("input");
+// const renderTasks = () => {
+//   tasksContainerElement.innerHTML = "";
+//   tasks.forEach((task, index) => {
+//     const taskElement: HTMLLIElement = document.createElement("li");
+//     const labelElement: HTMLLabelElement = document.createElement("label");
+//     const taskId: string = `task-${index}`;
+//     const checkboxElement: HTMLInputElement = document.createElement("input");
 
-    labelElement.setAttribute("for", taskId);
-    labelElement.innerText = task.name;
+//     labelElement.setAttribute("for", taskId);
+//     labelElement.innerText = task.name;
 
-    checkboxElement.type = "checkbox";
-    checkboxElement.name = task.name;
-    checkboxElement.id = taskId;
+//     checkboxElement.type = "checkbox";
+//     checkboxElement.name = task.name;
+//     checkboxElement.id = taskId;
+//     checkboxElement.checked = task.done;
 
-    taskElement.append(labelElement, checkboxElement);
-    tasksContainerElement.append(taskElement);
-  });
-};
+//     checkboxElement.addEventListener("change", () => {
+//       task.done = !task.done;
+//     });
+
+//     taskElement.append(labelElement, checkboxElement);
+//     tasksContainerElement.append(taskElement);
+//   });
+// };
 
 // NOTE: Opcja 2 jest nowsza i bardziej zwięzła, ponieważ pozwala na bezpośrednie wstrzyknięcie HTML
 // do elementu DOM za pomocą jednej instrukcji. Używa literałów szablonowych (template literals), co sprawia,
 // że jest bardziej czytelna i pozwala na łatwe włączenie zmiennych do znaczników HTML.
 // Jest to szczególnie przydatne przy budowaniu skomplikowanych struktur HTML.
 
-// const renderTasks = () => {
-//   tasksContainerElement.innerHTML = "";
-//   tasks.forEach((task, index) => {
-//     const taskElement: HTMLLIElement = document.createElement("li");
-//     const taskId: string = `task-${index}`;
+const renderTasks = () => {
+  tasksContainerElement.innerHTML = "";
+  tasks.forEach((task, index) => {
+    const taskElement: HTMLLIElement = document.createElement("li");
+    const taskId: string = `task-${index}`;
 
-//     taskElement.innerHTML = `
-//       <label for="task-${taskId}">${task.name}</label>
-//       <input type="checkbox" id="task-${taskId}" name="${task.name}" />
-//     `;
+    taskElement.innerHTML = `
+      <label for="${taskId}">${task.name}</label>
+      <input type="checkbox" id="${taskId}" name="${task.name}" ${
+      task.done ? "checked" : ""
+    } />
+    `;
 
-//     tasksContainerElement.append(taskElement);
-//   });
-// };
+    tasksContainerElement.append(taskElement);
+
+    const checkboxElement: HTMLInputElement = document.querySelector(
+      `#${taskId}`
+    );
+    checkboxElement.addEventListener("change", () => {
+      task.done = !task.done;
+    });
+  });
+};
 
 const addTask = (taskName: string) => {
   tasks.push({ name: taskName, done: false });

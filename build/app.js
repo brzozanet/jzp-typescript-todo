@@ -38,38 +38,46 @@ const tasks = [
 // ponieważ tworzy elementy DOM programowo, co minimalizuje ryzyko ataków typu Cross-Site Scripting (XSS),
 // gdy dane pochodzą z niezaufanych źródeł. Pozwala na bardziej kontrolowane tworzenie elementów i atrybutów,
 // ale jest bardziej rozwlekła i wymaga więcej kodu do osiągnięcia tego samego efektu.
-const renderTasks = () => {
-    tasksContainerElement.innerHTML = "";
-    tasks.forEach((task, index) => {
-        const taskElement = document.createElement("li");
-        const labelElement = document.createElement("label");
-        const taskId = `task-${index}`;
-        const checkboxElement = document.createElement("input");
-        labelElement.setAttribute("for", taskId);
-        labelElement.innerText = task.name;
-        checkboxElement.type = "checkbox";
-        checkboxElement.name = task.name;
-        checkboxElement.id = taskId;
-        taskElement.append(labelElement, checkboxElement);
-        tasksContainerElement.append(taskElement);
-    });
-};
-// NOTE: Opcja 2 jest nowsza i bardziej zwięzła, ponieważ pozwala na bezpośrednie wstrzyknięcie HTML
-// do elementu DOM za pomocą jednej instrukcji. Używa literałów szablonowych (template literals), co sprawia,
-// że jest bardziej czytelna i pozwala na łatwe włączenie zmiennych do znaczników HTML.
-// Jest to szczególnie przydatne przy budowaniu skomplikowanych struktur HTML.
 // const renderTasks = () => {
 //   tasksContainerElement.innerHTML = "";
 //   tasks.forEach((task, index) => {
 //     const taskElement: HTMLLIElement = document.createElement("li");
+//     const labelElement: HTMLLabelElement = document.createElement("label");
 //     const taskId: string = `task-${index}`;
-//     taskElement.innerHTML = `
-//       <label for="task-${taskId}">${task.name}</label>
-//       <input type="checkbox" id="task-${taskId}" name="${task.name}" />
-//     `;
+//     const checkboxElement: HTMLInputElement = document.createElement("input");
+//     labelElement.setAttribute("for", taskId);
+//     labelElement.innerText = task.name;
+//     checkboxElement.type = "checkbox";
+//     checkboxElement.name = task.name;
+//     checkboxElement.id = taskId;
+//     checkboxElement.checked = task.done;
+//     checkboxElement.addEventListener("change", () => {
+//       task.done = !task.done;
+//     });
+//     taskElement.append(labelElement, checkboxElement);
 //     tasksContainerElement.append(taskElement);
 //   });
 // };
+// NOTE: Opcja 2 jest nowsza i bardziej zwięzła, ponieważ pozwala na bezpośrednie wstrzyknięcie HTML
+// do elementu DOM za pomocą jednej instrukcji. Używa literałów szablonowych (template literals), co sprawia,
+// że jest bardziej czytelna i pozwala na łatwe włączenie zmiennych do znaczników HTML.
+// Jest to szczególnie przydatne przy budowaniu skomplikowanych struktur HTML.
+const renderTasks = () => {
+    tasksContainerElement.innerHTML = "";
+    tasks.forEach((task, index) => {
+        const taskElement = document.createElement("li");
+        const taskId = `task-${index}`;
+        taskElement.innerHTML = `
+      <label for="${taskId}">${task.name}</label>
+      <input type="checkbox" id="${taskId}" name="${task.name}" ${task.done ? "checked" : ""} />
+    `;
+        tasksContainerElement.append(taskElement);
+        const checkboxElement = document.querySelector(`#${taskId}`);
+        checkboxElement.addEventListener("change", () => {
+            task.done = !task.done;
+        });
+    });
+};
 const addTask = (taskName) => {
     tasks.push({ name: taskName, done: false });
 };
