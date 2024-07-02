@@ -10,27 +10,27 @@ const addButtonElement = document.querySelector("button");
 // ];
 const tasks = [
     {
-        name: "Skończyć kurs GO IT",
+        title: "Skończyć kurs GO IT",
         done: true,
     },
     {
-        name: "Nauczyć się Typescript",
+        title: "Nauczyć się Typescript",
         done: false,
     },
     {
-        name: "Nauczyć sie Next.js",
+        title: "Nauczyć sie Next.js",
         done: false,
     },
     {
-        name: "Skończyć zaległy kurs React",
+        title: "Skończyć zaległy kurs React",
         done: false,
     },
     {
-        name: "Zrobić portfolio",
+        title: "Zrobić portfolio",
         done: false,
     },
     {
-        name: "Znaleźć pracę",
+        title: "Znaleźć pracę",
         done: false,
     },
 ];
@@ -46,9 +46,9 @@ const tasks = [
 //     const taskId: string = `task-${index}`;
 //     const checkboxElement: HTMLInputElement = document.createElement("input");
 //     labelElement.setAttribute("for", taskId);
-//     labelElement.innerText = task.name;
+//     labelElement.innerText = task.title;
 //     checkboxElement.type = "checkbox";
-//     checkboxElement.name = task.name;
+//     checkboxElement.name = task.title;
 //     checkboxElement.id = taskId;
 //     checkboxElement.checked = task.done;
 //     checkboxElement.addEventListener("change", () => {
@@ -68,8 +68,8 @@ const renderTasks = () => {
         const taskElement = document.createElement("li");
         const taskId = `task-${index}`;
         taskElement.innerHTML = `
-      <label for="${taskId}">${task.name}</label>
-      <input type="checkbox" id="${taskId}" name="${task.name}" ${task.done ? "checked" : ""} />
+      <label for="${taskId}">${task.title}</label>
+      <input type="checkbox" id="${taskId}" name="${task.title}" ${task.done ? "checked" : ""} />
     `;
         tasksContainerElement.append(taskElement);
         const checkboxElement = document.querySelector(`#${taskId}`);
@@ -83,7 +83,7 @@ const addTask = (task) => {
 };
 addButtonElement.addEventListener("click", (event) => {
     event.preventDefault();
-    addTask({ name: taskNameInputElement.value, done: false });
+    addTask({ title: taskNameInputElement.value, done: false });
     renderTasks();
 });
 renderTasks();
