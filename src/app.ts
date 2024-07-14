@@ -3,10 +3,12 @@ const taskNameInputElement: HTMLInputElement = document.querySelector("#name");
 const addTaskButtonElement: HTMLButtonElement =
   document.querySelector("button");
 
-const tasks: {
+interface Task {
   name: string;
   done: boolean;
-}[] = [
+}
+
+const tasks: Task[] = [
   { name: "Nauczyć się Typescript", done: false },
   { name: "Nauczyć sie Next.js", done: false },
   { name: "Skończyć zaległy kurs Go IT", done: true },
@@ -64,14 +66,14 @@ const tasksRender = () => {
   });
 };
 
-const addTask = (taskName: string) => {
-  tasks.push({ name: taskName, done: false });
+const addTask = (task: Task) => {
+  tasks.push(task);
   console.log(tasks);
 };
 
 addTaskButtonElement.addEventListener("click", (event: MouseEvent) => {
   event.preventDefault();
-  addTask(taskNameInputElement.value);
+  addTask({ name: taskNameInputElement.value, done: false });
   tasksRender();
 });
 

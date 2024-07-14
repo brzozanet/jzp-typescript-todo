@@ -49,13 +49,13 @@ const tasksRender = () => {
         });
     });
 };
-const addTask = (taskName) => {
-    tasks.push({ name: taskName, done: false });
+const addTask = (task) => {
+    tasks.push(task);
     console.log(tasks);
 };
 addTaskButtonElement.addEventListener("click", (event) => {
     event.preventDefault();
-    addTask(taskNameInputElement.value);
+    addTask({ name: taskNameInputElement.value, done: false });
     tasksRender();
 });
 tasksRender();
