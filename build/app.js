@@ -1,26 +1,24 @@
 const taskContainerElement = document.querySelector(".tasks");
-console.log(taskContainerElement);
 const taskNameInputElement = document.querySelector("#name");
-console.log(taskNameInputElement.value);
 const addTaskButtonElement = document.querySelector("button");
-console.log(addTaskButtonElement);
 const tasks = [
-    "Nauczyć się Typescript",
-    "Nauczyć sie Next.js",
-    "Skończyć zaległy kurs React",
-    "Zrobić portfolio",
-    "Znaleźć pracę",
+    { name: "Nauczyć się Typescript", done: false },
+    { name: "Nauczyć sie Next.js", done: false },
+    { name: "Skończyć zaległy kurs Go IT", done: true },
+    { name: "Zrobić portfolio", done: false },
+    { name: "Znaleźć pracę", done: false },
 ];
 const tasksRender = () => {
     taskContainerElement.innerText = "";
     tasks.forEach((task) => {
         const taskElement = document.createElement("li");
-        taskElement.innerText = task;
+        taskElement.innerText = task.name;
         taskContainerElement.appendChild(taskElement);
     });
 };
-const addTask = (task) => {
-    tasks.push(task);
+const addTask = (taskName) => {
+    tasks.push({ name: taskName, done: false });
+    console.log(tasks);
 };
 addTaskButtonElement.addEventListener("click", (event) => {
     event.preventDefault();
