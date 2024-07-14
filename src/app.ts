@@ -5,15 +5,18 @@ const addTaskButtonElement: HTMLButtonElement =
 
 interface Task {
   name: string;
+  category: string;
   done: boolean;
 }
 
+const categories: string[] = ["Ogólne", "Kursy", "Mentoring", "Soft skill"];
+
 const tasks: Task[] = [
-  { name: "Nauczyć się Typescript", done: false },
-  { name: "Nauczyć sie Next.js", done: false },
-  { name: "Skończyć zaległy kurs Go IT", done: true },
-  { name: "Zrobić portfolio", done: false },
-  { name: "Znaleźć pracę", done: false },
+  { name: "Nauczyć się Typescript", category: "Kursy", done: false },
+  { name: "Nauczyć sie Next.js", category: "Kursy", done: false },
+  { name: "Zamknąć projekt Go IT", category: "Ogólne", done: true },
+  { name: "Napisać project foto stocka", category: "Mentoring", done: false },
+  { name: "Zrobić CV", category: "Soft skill", done: false },
 ];
 
 // NOTE: Opcja 1 jest bardziej tradycyjna i może być preferowana ze względów bezpieczeństwa,
@@ -73,7 +76,12 @@ const addTask = (task: Task) => {
 
 addTaskButtonElement.addEventListener("click", (event: MouseEvent) => {
   event.preventDefault();
-  addTask({ name: taskNameInputElement.value, done: false });
+  console.log(event);
+  addTask({
+    name: taskNameInputElement.value,
+    category: "Ogólne",
+    done: false,
+  });
   tasksRender();
 });
 

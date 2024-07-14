@@ -1,12 +1,13 @@
 const taskContainerElement = document.querySelector(".tasks");
 const taskNameInputElement = document.querySelector("#name");
 const addTaskButtonElement = document.querySelector("button");
+const categories = ["Ogólne", "Kursy", "Mentoring", "Soft skill"];
 const tasks = [
-    { name: "Nauczyć się Typescript", done: false },
-    { name: "Nauczyć sie Next.js", done: false },
-    { name: "Skończyć zaległy kurs Go IT", done: true },
-    { name: "Zrobić portfolio", done: false },
-    { name: "Znaleźć pracę", done: false },
+    { name: "Nauczyć się Typescript", category: "Kursy", done: false },
+    { name: "Nauczyć sie Next.js", category: "Kursy", done: false },
+    { name: "Zamknąć projekt Go IT", category: "Ogólne", done: true },
+    { name: "Napisać project foto stocka", category: "Mentoring", done: false },
+    { name: "Zrobić CV", category: "Soft skill", done: false },
 ];
 // NOTE: Opcja 1 jest bardziej tradycyjna i może być preferowana ze względów bezpieczeństwa,
 // ponieważ tworzy elementy DOM programowo, co minimalizuje ryzyko ataków typu Cross-Site Scripting (XSS),
@@ -55,7 +56,12 @@ const addTask = (task) => {
 };
 addTaskButtonElement.addEventListener("click", (event) => {
     event.preventDefault();
-    addTask({ name: taskNameInputElement.value, done: false });
+    console.log(event);
+    addTask({
+        name: taskNameInputElement.value,
+        category: "Ogólne",
+        done: false,
+    });
     tasksRender();
 });
 tasksRender();

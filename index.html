@@ -10,6 +10,26 @@
     <form class="container" autocomplete="off">
       <label for="name" type="text">Task:</label>
       <input type="text" id="name" value="Domyślne zadanie" />
+      <input type="radio" id="type-1" name="categories" value="Ogólne" /><label
+        for="type-1"
+        >Ogólne</label
+      >
+      <input type="radio" id="type-2" name="categories" value="Kursy" /><label
+        for="type-2"
+        >Kursy</label
+      >
+      <input
+        type="radio"
+        id="type-3"
+        name="categories"
+        value="Mentoring"
+      /><label for="type-3">Mentoring</label>
+      <input
+        type="radio"
+        id="type-4"
+        name="categories"
+        value="Soft skill"
+      /><label for="type-4">Soft skill</label>
       <button>Add</button>
       <p>Todo:</p>
       <ul class="tasks"></ul>
