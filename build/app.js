@@ -3,12 +3,12 @@ const taskNameInputElement = document.querySelector("#name");
 const addTaskButtonElement = document.querySelector("button");
 const categories = ["ogolne", "kursy", "mentoring", "softskill"];
 const tasks = [
-    { name: "Nauczyć się Typescript", category: "kursy", done: false },
-    { name: "Nauczyć sie Next.js", category: "kursy", done: false },
+    { name: "Nauczyć się Typescript", category: "cat-kursy", done: false },
+    { name: "Nauczyć sie Next.js", category: "cat-kursy", done: false },
     { name: "Zamknąć projekt Go IT", done: true },
-    { name: "Kupić nową kamerę do webinarów", done: false },
-    { name: "Napisać project foto stocka", category: "mentoring", done: false },
-    { name: "Zrobić CV", category: "softskill", done: false },
+    { name: "Kupić nową kamerę", done: false },
+    { name: "Projekt foto stock", category: "cat-mentoring", done: false },
+    { name: "Zrobić CV", category: "cat-softskill", done: false },
 ];
 // NOTE: Opcja 1 jest bardziej tradycyjna i może być preferowana ze względów bezpieczeństwa,
 // ponieważ tworzy elementy DOM programowo, co minimalizuje ryzyko ataków typu Cross-Site Scripting (XSS),

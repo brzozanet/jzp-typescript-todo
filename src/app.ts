@@ -5,19 +5,19 @@ const addTaskButtonElement: HTMLButtonElement =
 
 interface Task {
   name: string;
-  category?: string;
+  category?: "cat-ogolne" | "cat-kursy" | "cat-mentoring" | "cat-softskill";
   done: boolean;
 }
 
 const categories: string[] = ["ogolne", "kursy", "mentoring", "softskill"];
 
 const tasks: Task[] = [
-  { name: "Nauczyć się Typescript", category: "kursy", done: false },
-  { name: "Nauczyć sie Next.js", category: "kursy", done: false },
+  { name: "Nauczyć się Typescript", category: "cat-kursy", done: false },
+  { name: "Nauczyć sie Next.js", category: "cat-kursy", done: false },
   { name: "Zamknąć projekt Go IT", done: true },
-  { name: "Kupić nową kamerę do webinarów", done: false },
-  { name: "Napisać project foto stocka", category: "mentoring", done: false },
-  { name: "Zrobić CV", category: "softskill", done: false },
+  { name: "Kupić nową kamerę", done: false },
+  { name: "Projekt foto stock", category: "cat-mentoring", done: false },
+  { name: "Zrobić CV", category: "cat-softskill", done: false },
 ];
 
 // NOTE: Opcja 1 jest bardziej tradycyjna i może być preferowana ze względów bezpieczeństwa,
