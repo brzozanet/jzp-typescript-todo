@@ -1,13 +1,14 @@
 const taskContainerElement = document.querySelector(".tasks");
 const taskNameInputElement = document.querySelector("#name");
 const addTaskButtonElement = document.querySelector("button");
-const categories = ["Ogólne", "Kursy", "Mentoring", "Soft skill"];
+const categories = ["ogolne", "kursy", "mentoring", "softskill"];
 const tasks = [
-    { name: "Nauczyć się Typescript", category: "Kursy", done: false },
-    { name: "Nauczyć sie Next.js", category: "Kursy", done: false },
-    { name: "Zamknąć projekt Go IT", category: "Ogólne", done: true },
-    { name: "Napisać project foto stocka", category: "Mentoring", done: false },
-    { name: "Zrobić CV", category: "Soft skill", done: false },
+    { name: "Nauczyć się Typescript", category: "kursy", done: false },
+    { name: "Nauczyć sie Next.js", category: "kursy", done: false },
+    { name: "Zamknąć projekt Go IT", done: true },
+    { name: "Kupić nową kamerę do webinarów", done: false },
+    { name: "Napisać project foto stocka", category: "mentoring", done: false },
+    { name: "Zrobić CV", category: "softskill", done: false },
 ];
 // NOTE: Opcja 1 jest bardziej tradycyjna i może być preferowana ze względów bezpieczeństwa,
 // ponieważ tworzy elementy DOM programowo, co minimalizuje ryzyko ataków typu Cross-Site Scripting (XSS),
@@ -39,6 +40,9 @@ const tasksRender = () => {
     taskContainerElement.innerText = "";
     tasks.forEach((task, index) => {
         const taskElement = document.createElement("li");
+        if (task.category) {
+            taskElement.classList.add(task.category);
+        }
         taskElement.innerHTML = `
       <label for=task-"${index}">${task.name}</label>
       <input type="checkbox" id="task-${index}" name="${task.name}" ${task.done ? "checked" : ""}>
@@ -56,10 +60,8 @@ const addTask = (task) => {
 };
 addTaskButtonElement.addEventListener("click", (event) => {
     event.preventDefault();
-    console.log(event);
     addTask({
         name: taskNameInputElement.value,
-        category: "Ogólne",
         done: false,
     });
     tasksRender();
