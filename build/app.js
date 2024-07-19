@@ -1,15 +1,26 @@
+const categoryContainerElement = document.querySelector(".categories");
 const taskContainerElement = document.querySelector(".tasks");
 const taskNameInputElement = document.querySelector("#name");
 const addTaskButtonElement = document.querySelector("button");
 const categories = ["ogolne", "kursy", "mentoring", "softskill"];
 const tasks = [
-    { name: "Nauczyć się Typescript", category: "cat-kursy", done: false },
-    { name: "Nauczyć sie Next.js", category: "cat-kursy", done: false },
+    { name: "Nauczyć się Typescript", category: "kursy", done: false },
+    { name: "Nauczyć sie Next.js", category: "kursy", done: false },
     { name: "Zamknąć projekt Go IT", done: true },
     { name: "Kupić nową kamerę", done: false },
-    { name: "Projekt foto stock", category: "cat-mentoring", done: false },
-    { name: "Zrobić CV", category: "cat-softskill", done: false },
+    { name: "Projekt foto stock", category: "mentoring", done: false },
+    { name: "Zrobić CV", category: "softskill", done: false },
 ];
+const renderCategories = () => {
+    categories.forEach((category) => {
+        const categoryElement = document.createElement("li");
+        categoryElement.innerHTML = `
+      <input type="radio" id="${category}" name="category" value="${category}" />
+      <label for="${category}">${category}</label>    
+    `;
+        categoryContainerElement.append(categoryElement);
+    });
+};
 // NOTE: Opcja 1 jest bardziej tradycyjna i może być preferowana ze względów bezpieczeństwa,
 // ponieważ tworzy elementy DOM programowo, co minimalizuje ryzyko ataków typu Cross-Site Scripting (XSS),
 // gdy dane pochodzą z niezaufanych źródeł. Pozwala na bardziej kontrolowane tworzenie elementów i atrybutów,
@@ -36,7 +47,7 @@ const tasks = [
 // do elementu DOM za pomocą jednej instrukcji. Używa literałów szablonowych (template literals), co sprawia,
 // że jest bardziej czytelna i pozwala na łatwe włączenie zmiennych do znaczników HTML.
 // Jest to szczególnie przydatne przy budowaniu skomplikowanych struktur HTML.
-const tasksRender = () => {
+const renderTasks = () => {
     taskContainerElement.innerText = "";
     tasks.forEach((task, index) => {
         const taskElement = document.createElement("li");
@@ -60,10 +71,14 @@ const addTask = (task) => {
 };
 addTaskButtonElement.addEventListener("click", (event) => {
     event.preventDefault();
+    const selectedRadioElement = document.querySelector("input[type='radio']:checked");
+    console.log(selectedRadioElement.value);
     addTask({
         name: taskNameInputElement.value,
+        category: selectedRadioElement.value,
         done: false,
     });
-    tasksRender();
+    renderTasks();
 });
-tasksRender();
+renderCategories();
+renderTasks();

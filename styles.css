@@ -74,15 +74,15 @@ button:hover {
   margin-left: 8px;
 }
 
-.cat-kursy {
+.kursy {
   color: darkblue;
   list-style: circle;
 }
 
-.cat-mentoring {
+.mentoring {
   color: darkgoldenrod;
 }
 
-.cat-softskill {
+.softskill {
   text-decoration: underline;
 }

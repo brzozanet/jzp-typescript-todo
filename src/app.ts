@@ -1,24 +1,39 @@
+const categoryContainerElement: HTMLElement =
+  document.querySelector(".categories");
 const taskContainerElement: HTMLElement = document.querySelector(".tasks");
 const taskNameInputElement: HTMLInputElement = document.querySelector("#name");
 const addTaskButtonElement: HTMLButtonElement =
   document.querySelector("button");
 
+type Categories = "ogolne" | "kursy" | "mentoring" | "softskill";
+
 interface Task {
   name: string;
-  category?: "cat-ogolne" | "cat-kursy" | "cat-mentoring" | "cat-softskill";
+  category?: Categories;
   done: boolean;
 }
 
-const categories: string[] = ["ogolne", "kursy", "mentoring", "softskill"];
+const categories: Categories[] = ["ogolne", "kursy", "mentoring", "softskill"];
 
 const tasks: Task[] = [
-  { name: "Nauczyć się Typescript", category: "cat-kursy", done: false },
-  { name: "Nauczyć sie Next.js", category: "cat-kursy", done: false },
+  { name: "Nauczyć się Typescript", category: "kursy", done: false },
+  { name: "Nauczyć sie Next.js", category: "kursy", done: false },
   { name: "Zamknąć projekt Go IT", done: true },
   { name: "Kupić nową kamerę", done: false },
-  { name: "Projekt foto stock", category: "cat-mentoring", done: false },
-  { name: "Zrobić CV", category: "cat-softskill", done: false },
+  { name: "Projekt foto stock", category: "mentoring", done: false },
+  { name: "Zrobić CV", category: "softskill", done: false },
 ];
+
+const renderCategories = () => {
+  categories.forEach((category) => {
+    const categoryElement = document.createElement("li");
+    categoryElement.innerHTML = `
+      <input type="radio" id="${category}" name="category" value="${category}" />
+      <label for="${category}">${category}</label>    
+    `;
+    categoryContainerElement.append(categoryElement);
+  });
+};
 
 // NOTE: Opcja 1 jest bardziej tradycyjna i może być preferowana ze względów bezpieczeństwa,
 // ponieważ tworzy elementy DOM programowo, co minimalizuje ryzyko ataków typu Cross-Site Scripting (XSS),
@@ -49,7 +64,7 @@ const tasks: Task[] = [
 // że jest bardziej czytelna i pozwala na łatwe włączenie zmiennych do znaczników HTML.
 // Jest to szczególnie przydatne przy budowaniu skomplikowanych struktur HTML.
 
-const tasksRender = () => {
+const renderTasks = () => {
   taskContainerElement.innerText = "";
   tasks.forEach((task, index) => {
     const taskElement: HTMLElement = document.createElement("li");
@@ -80,11 +95,19 @@ const addTask = (task: Task) => {
 
 addTaskButtonElement.addEventListener("click", (event: MouseEvent) => {
   event.preventDefault();
+  const selectedRadioElement: HTMLInputElement = document.querySelector(
+    "input[type='radio']:checked"
+  );
+
+  console.log(selectedRadioElement.value);
+
   addTask({
     name: taskNameInputElement.value,
+    category: selectedRadioElement.value as Categories,
     done: false,
   });
-  tasksRender();
+  renderTasks();
 });
 
-tasksRender();
+renderCategories();
+renderTasks();
