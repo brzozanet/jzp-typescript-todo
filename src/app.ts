@@ -15,6 +15,13 @@ interface Task {
 
 const categories: Categories[] = ["ogolne", "kursy", "mentoring", "softskill"];
 
+const categoryDisplayNames: { [key: string]: string } = {
+  ogolne: "Ogólne",
+  kursy: "Kursy",
+  mentoring: "Mentoring",
+  softskill: "Soft skill",
+};
+
 const tasks: Task[] = [
   { name: "Nauczyć się Typescript", category: "kursy", done: false },
   { name: "Nauczyć sie Next.js", category: "kursy", done: false },
@@ -27,9 +34,10 @@ const tasks: Task[] = [
 const renderCategories = () => {
   categories.forEach((category) => {
     const categoryElement = document.createElement("li");
+    const displayName = categoryDisplayNames[category] || category;
     categoryElement.innerHTML = `
       <input type="radio" id="${category}" name="category" value="${category}" />
-      <label for="${category}">${category}</label>    
+      <label for="${category}">${displayName}</label>    
     `;
     categoryContainerElement.append(categoryElement);
   });

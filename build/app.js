@@ -3,6 +3,12 @@ const taskContainerElement = document.querySelector(".tasks");
 const taskNameInputElement = document.querySelector("#name");
 const addTaskButtonElement = document.querySelector("button");
 const categories = ["ogolne", "kursy", "mentoring", "softskill"];
+const categoryDisplayNames = {
+    ogolne: "Ogólne",
+    kursy: "Kursy",
+    mentoring: "Mentoring",
+    softskill: "Soft skill",
+};
 const tasks = [
     { name: "Nauczyć się Typescript", category: "kursy", done: false },
     { name: "Nauczyć sie Next.js", category: "kursy", done: false },
@@ -14,9 +20,10 @@ const tasks = [
 const renderCategories = () => {
     categories.forEach((category) => {
         const categoryElement = document.createElement("li");
+        const displayName = categoryDisplayNames[category] || category;
         categoryElement.innerHTML = `
       <input type="radio" id="${category}" name="category" value="${category}" />
-      <label for="${category}">${category}</label>    
+      <label for="${category}">${displayName}</label>    
     `;
         categoryContainerElement.append(categoryElement);
     });
