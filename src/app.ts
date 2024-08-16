@@ -2,6 +2,7 @@ import { Task } from "./interfaces/interfaces";
 import { Categories } from "./types/types";
 import { renderCategories } from "./renderers/renderCategories.js";
 import { renderTasks } from "./renderers/renderTasks.js";
+// import { TaskClass } from "./classes/task.js";
 
 const categoryContainerElement: HTMLElement =
   document.querySelector(".categories");
@@ -51,3 +52,6 @@ addTaskButtonElement.addEventListener("click", (event: MouseEvent) => {
 
 renderCategories(categories, categoryDisplayNames, categoryContainerElement);
 renderTasks(tasks, taskContainerElement);
+
+// const taskClassInstance = new TaskClass("Do paczkomatu", "ogolne", false);
+// console.log(taskClassInstance);
