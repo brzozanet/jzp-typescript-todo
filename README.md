@@ -1,4 +1,4 @@
-# jzp-typescript
+# typescript-todo-list
 
 To start project, type:
 
